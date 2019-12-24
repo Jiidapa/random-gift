@@ -163,7 +163,7 @@ export default function Random() {
       max: parseInt(maxPrice)
     };
     console.log(price)
-    const res = await axios.post("https://randomgift-3ao6zcngoq-an.a.run.app/randomgift", price)
+    const res = await axios.post("https://randomgift-existing.herokuapp.com/randomgift", price)
     setData(res.data);
   }
 
