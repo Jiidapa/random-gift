@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
+import Random from "./Random";
+import Footer from "./component/Footer";
+
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Kanit:200,300,400,500,600&display=swap');
+  body {
+    font-family: 'Kanit', sans-serif;
+  }
+`;
+
+const Layout = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Layout>
+        <GlobalStyle />
+        <div></div>
+        <Random />
+        <Footer />
+      </Layout>
     </div>
   );
 }
