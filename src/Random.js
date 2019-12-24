@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
-import Card from "./component/Card";
+import React, { useState } from 'react'
+import axios from 'axios'
+import styled from 'styled-components'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import MenuItem from '@material-ui/core/MenuItem'
+import Card from './component/Card'
 
 const price1 = [
   {
@@ -12,37 +13,66 @@ const price1 = [
     label: "1"
   },
   {
-    value: "2",
-    label: "2"
+    value: "100",
+    label: "100"
   },
   {
-    value: "3",
-    label: "3"
+    value: "200",
+    label: "200"
   },
   {
-    value: "4",
-    label: "4"
-  }
+    value: "300",
+    label: "300"
+  },
+  {
+    value: "400",
+    label: "400"
+  },
+  {
+    value: "500",
+    label: "500"
+  },
+  {
+    value: "1000",
+    label: "1000"
+  },
+  {
+    value: "100000",
+    label: "100000"
+  },
 ];
 
 const price2 = [
   {
-    value: "5",
-    label: "5"
+    value: "100",
+    label: "100"
   },
   {
-    value: "6",
-    label: "6"
+    value: "200",
+    label: "200"
   },
   {
-    value: "7",
-    label: "7"
+    value: "300",
+    label: "300"
   },
   {
-    value: "8",
-    label: "8"
-  }
+    value: "400",
+    label: "400"
+  },
+  {
+    value: "500",
+    label: "500"
+  },
+  {
+    value: "1000",
+    label: "1000"
+  },
+  {
+    value: "100000",
+    label: "100000"
+  },
 ];
+
 
 const Layout = styled.div`
   display: flex;
@@ -99,6 +129,7 @@ const BtnLayout = styled.div`
 `;
 
 const RandomButton = styled(Button)`
+  box-shadow: none !important;
   background-color: #e25e59 !important;
   border: 0;
   border-radius: 0.375rem;
@@ -123,16 +154,17 @@ const ImageLayout = styled.div`
 
 export default function Random() {
   const [minPrice, setMinPrice] = useState("1");
-  const [maxPrice, setMaxPrice] = useState("5");
+  const [maxPrice, setMaxPrice] = useState("100");
   const [data, setData] = useState({});
 
-  function handleSubmit() {
-    console.log(minPrice + " " + maxPrice);
+  async function handleSubmit() {
     const price = {
-      min: minPrice,
-      max: maxPrice
+      min: parseInt(minPrice),
+      max: parseInt(maxPrice)
     };
-    setData(price)
+    console.log(price)
+    const res = await axios.post("https://randomgift-3ao6zcngoq-an.a.run.app/randomgift", price)
+    setData(res.data);
   }
 
   return (
@@ -147,14 +179,14 @@ export default function Random() {
               เข้าช่วงเทศกาลปีใหม่แล้ว แต่ยังไม่รู้จะซื้อของขวัญอะไรไปจับ​สลากดี
             </Text2>
             <Text2>
-              ลองเลือกช่วงราคา แล้วกดปุ่มสุ่มของขวัญดูสิ่
+              ลองเลือกช่วงราคา แล้วกดปุ่มสุ่มของขวัญดูสิ
               บางทีมันอาจจะช่วยคุณได้นะ
             </Text2>
           </Grid>
           <Grid item xs={11} md={12} style={{ marginTop: "1rem" }}>
             <Top1>
               <Grid container justify="center" alignItems="center">
-                <Grid item xs={6} md={3}>
+                <Grid item xs={6} md={2}>
                   <Grid container justify="flex-end">
                     <Grid item xs={12} md={12}>
                       <SelectMin>
@@ -177,7 +209,7 @@ export default function Random() {
                     </Grid>
                   </Grid>
                 </Grid>
-                <Grid item xs={6} md={3}>
+                <Grid item xs={6} md={2}>
                   <Grid container justify="flex-start">
                     <Grid item xs={12} md={12}>
                       <SelectMax>

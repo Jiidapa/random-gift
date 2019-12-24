@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import Grid from "@material-ui/core/Grid";
-import img from "../assets/img_gift.svg";
+import React from "react"
+import styled from "styled-components"
+import commaNumber  from 'comma-number'
+import Grid from "@material-ui/core/Grid"
+import img from "../assets/img_gift.svg"
 
 const Layout = styled.div`
   margin: 2rem 0;
@@ -19,8 +20,8 @@ const ImageSize = styled.img`
 
 const ImageSize2 = styled.img`
   width: 19rem;
+  height: 17rem;
   object-fit: contain;
-  border: 1px solid black;
   @media (max-width: 768px) {
     width: 14rem;
   }
@@ -35,6 +36,7 @@ const CardLayout = styled.div`
   padding: 2rem;
   @media (max-width: 768px) {
     width: 15rem;
+    padding: 1rem;
   }
 `;
 
@@ -44,20 +46,20 @@ const ImageCard = styled.div`
 `;
 
 const Name = styled.div`
-  font-wieght: 500;
-  font-size: 2rem;
+  font-wieght: 700;
+  font-size: 1.5rem;
   color: #000000;
   letter-spacing: 0.035625rem;
   text-align: left;
   margin-top: 1rem;
   @media (max-width: 768px) {
-    font-size: 1.8rem;
+    font-size: 1rem;
     margin-top: 0.5rem;
   }
 `;
 
 const DetailLayout = styled.div`
-  height: 3.7rem;
+  height: 1rem;
 `;
 const Detail = styled.div`
   opacity: 0.8;
@@ -73,14 +75,13 @@ const Detail = styled.div`
 
 const Price = styled.div`
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #000000;
   letter-spacing: 0.026875rem;
   text-align: left;
   @media (max-width: 768px) {
-    font-size: 1.8rem;
-    font-size: 1.4rem;
-  }
+    font-size: 1rem;
+  }#f5f5f5
 `;
 
 const Button = styled.button`
@@ -98,33 +99,38 @@ const Button = styled.button`
   margin-top: 0.5rem;
 `;
 
+const Link = styled.a`
+  text-decoration: none;
+  color: #E25E59;
+`
+
 export default function Card(props) {
-  const { min, max } = props.price;
+  const { image, name, url, price } = props.price
   return (
     <Layout>
-      {min !== undefined && max !== undefined ? (
+      {name !== undefined ? (
         <Grid container direction="row" justify="center" alignItems="center">
           <Grid item xs={12} md={12}>
             <CardLayout>
               <Grid container>
                 <Grid item xs={12} md={12}>
                   <ImageCard>
-                    <ImageSize2 src={img} />
+                    <ImageSize2 src={image} />
                   </ImageCard>
                 </Grid>
                 <Grid item xs={12} md={12}>
-                  <Name>Adidas</Name>
+                  <Name>{name}</Name>
                 </Grid>
                 <Grid item xs={12} md={12}>
                   <DetailLayout>
-                    <Detail>รองเท้า Runfalcon รุ่น F36202</Detail>
+                    <Detail></Detail>
                   </DetailLayout>
                 </Grid>
                 <Grid item xs={12} md={12}>
-                  <Price>65 บาท</Price>
+                  <Price>{commaNumber(parseInt(price).toFixed(2))} บาท</Price>
                 </Grid>
                 <Grid item xs={12} md={12}>
-                  <Button>ดูรายละเอียดสินค้า</Button>
+                  <Button><Link href={url} target="_blank" rel="noopener noreferrer">ดูรายละเอียดสินค้า</Link></Button>
                 </Grid>
               </Grid>
             </CardLayout>

@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "build",
+    "site": "random-gift-8b89d",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
+
+
